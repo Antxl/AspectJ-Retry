@@ -1,10 +1,7 @@
 package dev.antxl.retry;
 
-import lombok.Getter;
-
 import java.lang.reflect.Method;
 
-@Getter
 public class RetryEvent{
     private final Throwable cause;
     private final Class<? extends Throwable> target;
@@ -19,7 +16,55 @@ public class RetryEvent{
     private final long maxInterval;
     private final long stopAfter;
 
-    RetryEvent(Retry retry,Throwable cause,Method targetMethod,int currentAttempt,long nextInterval)
+    public Throwable getCause() {
+        return cause;
+    }
+
+    public Class<? extends Throwable> getTarget() {
+        return target;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Method getTargetMethod() {
+        return targetMethod;
+    }
+
+    public int getCurrentAttempt() {
+        return currentAttempt;
+    }
+
+    public int getMaxAttempts() {
+        return maxAttempts;
+    }
+
+    public long getInterval() {
+        return interval;
+    }
+
+    public long getIncreaseWith() {
+        return increaseWith;
+    }
+
+    public double getIncreaseBy() {
+        return increaseBy;
+    }
+
+    public long getNextInterval() {
+        return nextInterval;
+    }
+
+    public long getMaxInterval() {
+        return maxInterval;
+    }
+
+    public long getStopAfter() {
+        return stopAfter;
+    }
+
+    RetryEvent(Retry retry, Throwable cause, Method targetMethod, int currentAttempt, long nextInterval)
     {
         this.cause=cause;
         target=retry.value();
