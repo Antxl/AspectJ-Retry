@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 
 public class RetryEvent{
     private final Throwable cause;
-    private final Class<? extends Throwable> target;
+    private final Class<? extends Throwable>[] target;
     private final String name;
     private final Method targetMethod;
     private final int currentAttempt;
@@ -20,7 +20,7 @@ public class RetryEvent{
         return cause;
     }
 
-    public Class<? extends Throwable> getTarget() {
+    public Class<? extends Throwable>[] getTarget() {
         return target;
     }
 
@@ -67,7 +67,7 @@ public class RetryEvent{
     RetryEvent(Retry retry, Throwable cause, Method targetMethod, int currentAttempt, long nextInterval)
     {
         this.cause=cause;
-        target=retry.value();
+        target=retry.value().clone();
         name=retry.name();
         this.targetMethod=targetMethod;
         this.currentAttempt=currentAttempt;

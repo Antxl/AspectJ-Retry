@@ -4,9 +4,9 @@ import java.lang.annotation.*;
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD})
 public @interface Retry {
-    Class<? extends Throwable> value() default Throwable.class;
+    Class<? extends Throwable>[] value() default {Throwable.class};
     String name() default "";
     int maxAttempts() default 0;
     long interval() default 0;
