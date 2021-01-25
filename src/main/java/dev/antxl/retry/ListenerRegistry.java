@@ -5,6 +5,11 @@ import dev.antxl.retry.exception.IllegalTargetNameException;
 import java.util.Hashtable;
 
 public class ListenerRegistry {
+    /**
+     * To prevent initialize instance
+     */
+    private ListenerRegistry(){}
+
     private final static Hashtable<String, RetryActionListener> registry=new Hashtable<>();
 
     public static void register(String targetName,RetryActionListener listener)
